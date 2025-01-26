@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    tools:context=".MainActivity"
+    android:fitsSystemWindows="true"
+
+    >
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        app:menu="@menu/main_drawer_layout"
+        android:fitsSystemWindows="true"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/menu_header"
+        >
+
+    </com.google.android.material.navigation.NavigationView>
+    
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/action_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/header"
+            >
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/header"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="40dp"
+                android:layout_marginTop="74dp"
+                android:orientation="vertical"
+
+                >
+
+                <LinearLayout
+                    android:id="@+id/course_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/course_button_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginVertical="30dp"
+                        android:layout_weight="1"
+                        android:text="@string/course_button_name"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+
+                        >
+
+
+                    </TextView>
+
+                    <ImageView
+                        android:id="@+id/course_button_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+
+                        android:src="@drawable/course_button"
+
+                        >
+
+                    </ImageView>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/mark_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/course_button"
+                    android:layout_marginVertical="20dp"
+                    android:background="@drawable/mark_button_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginVertical="30dp"
+                        android:layout_weight="1"
+                        android:text="@string/mark_button_text"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+
+                        >
+
+
+                    </TextView>
+
+                    <ImageView
+                        android:id="@+id/mark_button_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+
+                        android:src="@drawable/mark_button_img"
+
+                        >
+
+                    </ImageView>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/record_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/course_button"
+                    android:layout_marginVertical="20dp"
+                    android:background="@drawable/record_button_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginVertical="30dp"
+                        android:layout_weight="1"
+                        android:text="@string/record_button_text"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+
+                        >
+
+
+                    </TextView>
+
+                    <ImageView
+                        android:id="@+id/record_button_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+
+                        android:src="@drawable/record_button_img"
+
+                        >
+
+                    </ImageView>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/schedule_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/course_button"
+                    android:layout_marginVertical="20dp"
+                    android:background="@drawable/schedule_button_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginVertical="30dp"
+                        android:layout_weight="1"
+                        android:text="@string/schedule_button_text"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+
+                        >
+
+
+                    </TextView>
+
+                    <ImageView
+                        android:id="@+id/schedule_button_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+
+                        android:src="@drawable/schedule_button_img"
+
+                        >
+
+                    </ImageView>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/competitions_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/course_button"
+                    android:layout_marginVertical="20dp"
+                    android:background="@drawable/competitions_button_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginVertical="30dp"
+                        android:layout_weight="1"
+                        android:text="@string/competitions_button_text"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+
+                        >
+
+
+                    </TextView>
+
+                    <ImageView
+                        android:id="@+id/competitions_button_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+
+                        android:src="@drawable/competitions_button_img"
+
+                        >
+
+                    </ImageView>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/command_to_subject_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/course_button"
+                    android:layout_marginVertical="20dp"
+                    android:background="@drawable/command_button_background"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginVertical="30dp"
+                        android:layout_weight="1"
+                        android:text="@string/command_button_text"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+
+                        >
+
+
+                    </TextView>
+
+                    <ImageView
+                        android:id="@+id/command_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+
+                        android:src="@drawable/command_button_img"
+
+                        >
+
+                    </ImageView>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

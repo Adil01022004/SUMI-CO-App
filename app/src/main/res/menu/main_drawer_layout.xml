@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <group
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <item
+            android:id="@+id/menu_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="Уведомление" />
+        <item
+            android:id="@+id/menu_achi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="Достижения" />
+        <item
+            android:id="@+id/menu_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="Чат" />
+        <item
+            android:id="@+id/menu_linkedin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="LinkedIn" />
+        <item
+            android:id="@+id/menu_instagram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="Instagram" />
+        <item
+            android:id="@+id/menu_discord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="Discord" />
+        <item
+            android:id="@+id/menu_telegram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="Telegram" />
+        <item
+            android:id="@+id/menu_faq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="FAQ" />
+        <item
+            android:id="@+id/menu_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="Выйти с аккаунта" />
+    </group>
+</menu>
