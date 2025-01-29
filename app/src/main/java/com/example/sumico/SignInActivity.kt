@@ -22,6 +22,11 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
+        auth = FirebaseAuth.getInstance()
+        userEmail = findViewById(R.id.user_email)
+        userPassword = findViewById(R.id.user_password)
+        loginButton = findViewById(R.id.login_button)
+
 
         loginButton.setOnClickListener {
             val email = userEmail.text.toString()
@@ -46,7 +51,7 @@ class SignInActivity : AppCompatActivity() {
 
 
 
-        auth = FirebaseAuth.getInstance()
+
 
 
 
