@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Sumico</string>
+    <string name="app_name">SUMI-CO</string>
     <string name="course_button_name">Курсы</string>
     <string name="mark_button_text">Оценки</string>
     <string name="record_button_text">Запись</string>
     <string name="schedule_button_text">Расписание</string>
-    <string name="competitions_button_text">Соревнования</string>
+    <string name="competitions_button_text">Состязание</string>
     <string name="command_button_text">По предмету</string>
     <string name="null_content_text">Нет Контента</string>
     <string name="email_hint">email</string>
