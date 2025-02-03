@@ -70,5 +70,43 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        try {
+            scheduleButton.setOnClickListener{
+                val intent = Intent(this, EmptyContentActivity::class.java)
+                intent.putExtra("some_data", "example")
+                startActivity(intent)
+            }
+        }
+        catch (e: Exception){
+            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+
+        }
+
+
+        try {
+            competitionsButton.setOnClickListener{
+                val intent = Intent(this, EmptyContentActivity::class.java)
+                intent.putExtra("some_data", "example")
+                startActivity(intent)
+            }
+        }
+        catch (e: Exception){
+            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+
+        }
+
+
+        try {
+            commandToSubjectButton.setOnClickListener{
+                val intent = Intent(this, EmptyContentActivity::class.java)
+                intent.putExtra("some_data", "example")
+                startActivity(intent)
+            }
+        }
+        catch (e: Exception){
+            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+
+        }
+
     }
 }
