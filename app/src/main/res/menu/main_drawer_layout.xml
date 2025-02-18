@@ -50,6 +50,7 @@
             android:id="@+id/menu_exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:title="Выйти с аккаунта" />
+            android:title="Выйти с аккаунта"
+            />
     </group>
 </menu>

@@ -38,7 +38,11 @@ class SignInActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            val userEmailAccess = email.toString()
+                            val userPasswordAccess = password.toString()
                             Toast.makeText(this, "Вход выполнен!", Toast.LENGTH_SHORT).show()
+                            intent.putExtra("userAccessEmail", userEmailAccess)
+                            intent.putExtra("userAccessPassword", userPasswordAccess)
                             // Переход к основному экрану приложения
                             startActivity(Intent(this, MainActivity::class.java))
                             finish()
@@ -47,6 +51,9 @@ class SignInActivity : AppCompatActivity() {
                         }
                     }
             }
+
+
+
         }
 
 

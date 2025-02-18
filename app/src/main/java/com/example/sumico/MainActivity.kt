@@ -7,6 +7,10 @@ import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,10 +22,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var competitionsButton: LinearLayout
     private lateinit var commandToSubjectButton: LinearLayout
 
-
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var menuButton: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        val firebaseDb = Firebase.database
+        val myRef = firebaseDb.getReference("message")
+
+        //myRef.setValue("Hello World")
 
 
         courseButton = findViewById(R.id.course_button)
@@ -30,6 +41,14 @@ class MainActivity : AppCompatActivity() {
         scheduleButton = findViewById(R.id.schedule_button)
         competitionsButton = findViewById(R.id.competitions_button)
         commandToSubjectButton = findViewById(R.id.command_to_subject_button)
+        drawerLayout = findViewById(R.id.drawer_layout)
+        menuButton = findViewById(R.id.menu)
+
+
+        menuButton.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
 
 
 
