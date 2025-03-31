@@ -11,4 +11,5 @@
     <string name="sign_in_text">Вход</string>
     <string name="password_hint">Пароль</string>
     <string name="login_btn_text">Войти</string>
+    <string name="zero_user_point">0 points</string>
 </resources>

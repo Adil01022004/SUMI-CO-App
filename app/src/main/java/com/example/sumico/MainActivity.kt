@@ -1,131 +1,152 @@
 package com.example.sumico
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.sumico.userInfoGlobal.UserInfo
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
 
 class MainActivity : AppCompatActivity() {
-
-
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var menuButton: ImageView
     private lateinit var courseButton: LinearLayout
     private lateinit var markButton: LinearLayout
     private lateinit var recordButton: LinearLayout
     private lateinit var scheduleButton: LinearLayout
-    private lateinit var competitionsButton: LinearLayout
+    private lateinit var competitionsButton:LinearLayout
     private lateinit var commandToSubjectButton: LinearLayout
-
-    private lateinit var drawerLayout: DrawerLayout
-    private lateinit var menuButton: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val firebaseDb = Firebase.database
-        val myRef = firebaseDb.getReference("message")
+        val myRef = firebaseDb.getReference("userInfo")
 
-        //myRef.setValue("Hello World")
+        val userEmail = intent.getStringExtra("userAccessEmail") ?: "default_userEmail"
+        val userPassword = intent.getStringExtra("userAccessPassword") ?: "default_userPassword"
+        val safeUserEmail = userEmail.substringBefore("@")
+
+        val sharedPref = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val userInfo = UserInfo(userEmail, userPassword)
+
+        // Загружаем имя пользователя из Firebase
+        userInfo.getUserFullName(userEmail) { userNameFromFirebase ->
+            val userNameFromPrefs = sharedPref.getString("userName", null)
+
+            Log.d("UserCheck", "Firebase имя: $userNameFromFirebase")
+            Log.d("UserCheck", "SharedPreferences имя: $userNameFromPrefs")
+
+            var finalUserName = userNameFromFirebase ?: userNameFromPrefs
+
+            sharedPref.edit().clear().apply()
+            if (finalUserName == null) {
 
 
+                Log.d("UserCheck", "Имя отсутствует, показываем диалоговое окно")
+                showNameDialog(sharedPref, safeUserEmail)
+
+            } else {
+                Toast.makeText(this, "Добро пожаловать, $finalUserName!", Toast.LENGTH_SHORT).show()
+            }
+
+            // Сохраняем имя в Firebase (если его нет)
+            if (userNameFromFirebase == null) {
+                myRef.child(safeUserEmail).child("userFullName").setValue(finalUserName)
+            }
+        }
+
+        setupUI()
+    }
+
+    private fun setupUI() {
+        val userEmail = intent.getStringExtra("userAccessEmail") ?: "default_userEmail"
+
+
+        drawerLayout = findViewById(R.id.drawer_layout)
+        menuButton = findViewById(R.id.menu)
         courseButton = findViewById(R.id.course_button)
         markButton = findViewById(R.id.mark_button)
         recordButton = findViewById(R.id.record_button)
         scheduleButton = findViewById(R.id.schedule_button)
         competitionsButton = findViewById(R.id.competitions_button)
         commandToSubjectButton = findViewById(R.id.command_to_subject_button)
-        drawerLayout = findViewById(R.id.drawer_layout)
-        menuButton = findViewById(R.id.menu)
-
 
         menuButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
+        courseButton.setOnClickListener {
+            val intent = Intent(this, EmptyContentActivity::class.java)
+            startActivity(intent)
+        }
+
+        markButton.setOnClickListener {
+            val intent = Intent(this, GradeActivity::class.java)
+
+            Toast.makeText(this, "Вход выполнен!", Toast.LENGTH_SHORT).show()
+            intent.putExtra("userAccessEmail",userEmail )
+
+
+            startActivity(intent)
+        }
+
+        recordButton.setOnClickListener {
+            val intent = Intent(this, EmptyContentActivity::class.java)
+            startActivity(intent)
+        }
+
+        scheduleButton.setOnClickListener {
+            val intent = Intent(this, EmptyContentActivity::class.java)
+            startActivity(intent)
+        }
+
+        competitionsButton.setOnClickListener {
+            val intent = Intent(this, EmptyContentActivity::class.java)
+            startActivity(intent)
+        }
+
+        commandToSubjectButton.setOnClickListener {
+            val intent = Intent(this, EmptyContentActivity::class.java)
+            startActivity(intent)
+        }
 
 
 
-        try {
-            courseButton.setOnClickListener{
-                val intent = Intent(this, EmptyContentActivity::class.java)
-                intent.putExtra("some_data", "example")
-                startActivity(intent)
+
+    }
+
+    // Диалоговое окно для ввода имени
+    private fun showNameDialog(sharedPref: android.content.SharedPreferences, userKey: String) {
+        val editText = EditText(this)
+        editText.hint = "Введите ваше имя"
+
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Введите имя")
+            .setView(editText)
+            .setPositiveButton("OK") { _, _ ->
+                val name = editText.text.toString().trim()
+                if (name.isNotEmpty()) {
+                    sharedPref.edit().putString("userName", name).apply()
+                    Firebase.database.getReference("userInfo").child(userKey).child("userFullName").setValue(name)
+                    Toast.makeText(this, "Привет, $name!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Имя не может быть пустым", Toast.LENGTH_SHORT).show()
+                    showNameDialog(sharedPref, userKey) // Повторяем ввод, если пустое
+                }
             }
-        }
-        catch (e: Exception){
-            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+            .setCancelable(false)
+            .create()
 
-        }
-
-        try {
-            markButton.setOnClickListener{
-                val intent = Intent(this, EmptyContentActivity::class.java)
-                intent.putExtra("some_data", "example")
-                startActivity(intent)
-            }
-        }
-        catch (e: Exception){
-            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
-
-        }
-
-        try {
-            recordButton.setOnClickListener{
-                val intent = Intent(this, EmptyContentActivity::class.java)
-                intent.putExtra("some_data", "example")
-                startActivity(intent)
-            }
-        }
-        catch (e: Exception){
-            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
-
-        }
-
-
-        try {
-            scheduleButton.setOnClickListener{
-                val intent = Intent(this, EmptyContentActivity::class.java)
-                intent.putExtra("some_data", "example")
-                startActivity(intent)
-            }
-        }
-        catch (e: Exception){
-            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
-
-        }
-
-
-        try {
-            competitionsButton.setOnClickListener{
-                val intent = Intent(this, EmptyContentActivity::class.java)
-                intent.putExtra("some_data", "example")
-                startActivity(intent)
-            }
-        }
-        catch (e: Exception){
-            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
-
-        }
-
-
-        try {
-            commandToSubjectButton.setOnClickListener{
-                val intent = Intent(this, EmptyContentActivity::class.java)
-                intent.putExtra("some_data", "example")
-                startActivity(intent)
-            }
-        }
-        catch (e: Exception){
-            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
-
-        }
-
+        dialog.show()
     }
 }

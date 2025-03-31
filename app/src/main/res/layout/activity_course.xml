@@ -49,6 +49,7 @@
 
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation"
         android:layout_width="300dp"
         android:layout_height="match_parent"
         app:menu="@menu/main_drawer_layout"
