@@ -9,31 +9,34 @@ import com.google.firebase.database.database
 
 class UserInfo(
     val userEmail: String,
-    val userPassword: String,
+    val userPassword: String? = null,
     val userFullName: String? = null,
     val userPoints: Int? = 0
 ) {
     private val firebaseDb = Firebase.database
 
     // Получение имени пользователя с Firebase (через callback)
-    fun getUserFullName(userEmail: String, callback: (String?) -> Unit) {
+    fun getUserFullName(callback: (String?) -> Unit) {
         val safeUserEmail = userEmail.substringBefore("@")
+        val myRef = firebaseDb.getReference("userInfo").child(safeUserEmail).child("userFullName")
 
-        val myRef = firebaseDb.getReference("userInfo").child(safeUserEmail)
-
-        myRef.get().addOnSuccessListener { snapshot ->
-            if (snapshot.exists()) {
-                val userName = snapshot.child("userFullName").getValue(String::class.java)
-                Log.d("FirebaseData", "Имя пользователя: $userName")
-                callback(userName) // Передаем имя в callback
-            } else {
-                Log.d("FirebaseData", "Данные не найдены!")
-                callback(null) // Если данных нет, передаем null
+        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val userName = snapshot.getValue(String::class.java)
+                    Log.d("FirebaseData", "Имя пользователя: $userName")
+                    callback(userName)
+                } else {
+                    Log.d("FirebaseData", "Имя пользователя не найдено!")
+                    callback(null)
+                }
             }
-        }.addOnFailureListener {
-            Log.e("FirebaseData", "Ошибка получения данных", it)
-            callback(null) // В случае ошибки передаем null
-        }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("FirebaseData", "Ошибка получения данных", error.toException())
+                callback(null)
+            }
+        })
     }
 
 

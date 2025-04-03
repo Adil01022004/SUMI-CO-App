@@ -39,31 +39,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         val userInfo = UserInfo(userEmail, userPassword)
 
-        // Загружаем имя пользователя из Firebase
-        userInfo.getUserFullName(userEmail) { userNameFromFirebase ->
-            val userNameFromPrefs = sharedPref.getString("userName", null)
 
-            Log.d("UserCheck", "Firebase имя: $userNameFromFirebase")
-            Log.d("UserCheck", "SharedPreferences имя: $userNameFromPrefs")
-
-            var finalUserName = userNameFromFirebase ?: userNameFromPrefs
-
-            sharedPref.edit().clear().apply()
-            if (finalUserName == null) {
-
-
-                Log.d("UserCheck", "Имя отсутствует, показываем диалоговое окно")
-                showNameDialog(sharedPref, safeUserEmail)
-
-            } else {
-                Toast.makeText(this, "Добро пожаловать, $finalUserName!", Toast.LENGTH_SHORT).show()
-            }
-
-            // Сохраняем имя в Firebase (если его нет)
-            if (userNameFromFirebase == null) {
-                myRef.child(safeUserEmail).child("userFullName").setValue(finalUserName)
-            }
-        }
 
         setupUI()
     }
@@ -86,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         courseButton.setOnClickListener {
-            val intent = Intent(this, EmptyContentActivity::class.java)
+            val intent = Intent(this, CourseActivity::class.java)
             startActivity(intent)
         }
 
@@ -125,28 +101,5 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    // Диалоговое окно для ввода имени
-    private fun showNameDialog(sharedPref: android.content.SharedPreferences, userKey: String) {
-        val editText = EditText(this)
-        editText.hint = "Введите ваше имя"
 
-        val dialog = AlertDialog.Builder(this)
-            .setTitle("Введите имя")
-            .setView(editText)
-            .setPositiveButton("OK") { _, _ ->
-                val name = editText.text.toString().trim()
-                if (name.isNotEmpty()) {
-                    sharedPref.edit().putString("userName", name).apply()
-                    Firebase.database.getReference("userInfo").child(userKey).child("userFullName").setValue(name)
-                    Toast.makeText(this, "Привет, $name!", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "Имя не может быть пустым", Toast.LENGTH_SHORT).show()
-                    showNameDialog(sharedPref, userKey) // Повторяем ввод, если пустое
-                }
-            }
-            .setCancelable(false)
-            .create()
-
-        dialog.show()
-    }
 }

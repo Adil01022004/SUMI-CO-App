@@ -3,18 +3,23 @@ package com.example.sumico
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.sumico.userInfoGlobal.UserInfo
 
 class EmptyContentActivity : AppCompatActivity() {
 
     private var menuButton: ImageView? = null
     private var drawerLayout: DrawerLayout? = null
-
+    private var menuUserName: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_empty_content)
+
+        val userEmail = intent.getStringExtra("userAccessEmail") ?: "default_userEmail"
+
 
         // Проверяем наличие drawer_layout в activity_empty_content.xml
         drawerLayout = findViewById(R.id.drawer_layout)
@@ -30,6 +35,14 @@ class EmptyContentActivity : AppCompatActivity() {
             menuButton?.setOnClickListener {
                 drawerLayout?.openDrawer(GravityCompat.START)
             }
+        }
+
+        menuUserName = findViewById(R.id.username)?: null
+
+        val userInfo = UserInfo(userEmail)
+        userInfo.getUserFullName { userFullName ->
+            menuUserName?.text = userFullName
+            Log.d("Username", "Username: $menuUserName")
         }
     }
 }
