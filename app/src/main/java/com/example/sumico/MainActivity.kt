@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         markButton.setOnClickListener {
             val intent = Intent(this, GradeActivity::class.java)
 
-            Toast.makeText(this, "Вход выполнен!", Toast.LENGTH_SHORT).show()
+
             intent.putExtra("userAccessEmail",userEmail )
 
 
