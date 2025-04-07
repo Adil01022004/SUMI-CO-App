@@ -8,10 +8,16 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.MediaController
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.sumico.databinding.ActivityMainBinding
 import com.example.sumico.userInfoGlobal.UserInfo
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
@@ -25,9 +31,25 @@ class MainActivity : AppCompatActivity() {
     private lateinit var scheduleButton: LinearLayout
     private lateinit var competitionsButton:LinearLayout
     private lateinit var commandToSubjectButton: LinearLayout
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var conf: AppBarConfiguration
+    private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
+
+        setupUI()
+        navController = findNavController(R.id.fragmentContainerView)
+        conf = AppBarConfiguration(
+            setOf(
+                R.id.menu_main,
+                R.id.menu_achi
+            ), binding.drawerLayout
+
+
+        )
+        setupActionBarWithNavController(navController, conf)
 
         val firebaseDb = Firebase.database
         val myRef = firebaseDb.getReference("userInfo")
@@ -38,15 +60,15 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         val userInfo = UserInfo(userEmail, userPassword)
+        userInfo.setUserInfo(userEmail, userPassword)
 
 
 
-        setupUI()
     }
 
     private fun setupUI() {
         val userEmail = intent.getStringExtra("userAccessEmail") ?: "default_userEmail"
-
+        val userPassword = intent.getStringExtra("userAccessPassword") ?: "default_userPassword"
 
         drawerLayout = findViewById(R.id.drawer_layout)
         menuButton = findViewById(R.id.menu)

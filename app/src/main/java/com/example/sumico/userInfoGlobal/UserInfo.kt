@@ -15,6 +15,14 @@ class UserInfo(
 ) {
     private val firebaseDb = Firebase.database
 
+
+
+    fun setUserInfo(userEmail: String, userPassword: String){
+        val safeUserEmail = userEmail.substringBefore("@")
+        val myRef = firebaseDb.getReference("userInfo")
+        myRef.child(safeUserEmail).setValue(UserInfo(userEmail, userPassword))
+    }
+
     // Получение имени пользователя с Firebase (через callback)
     fun getUserFullName(callback: (String?) -> Unit) {
         val safeUserEmail = userEmail.substringBefore("@")

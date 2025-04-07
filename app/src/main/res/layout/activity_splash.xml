@@ -15,9 +15,15 @@
             android:src="@drawable/logo_none_background"
             android:layout_centerInParent="true"
             />
+        <TextView
+            android:id="@+id/command_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logo"
+            android:text="by Fen1x"
+            android:textAlignment="center"
+            android:textSize="15sp">
 
-
-
-
+        </TextView>
     </RelativeLayout>
 </RelativeLayout>

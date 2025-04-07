@@ -7,50 +7,64 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
         <item
+            android:id="@+id/menu_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/home_img"
+            android:title="Главная" />
+        <item
             android:id="@+id/menu_notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:icon="@drawable/notification_img"
             android:title="Уведомление" />
         <item
             android:id="@+id/menu_achi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:icon="@drawable/achiv_img"
             android:title="Достижения" />
         <item
             android:id="@+id/menu_chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:icon="@drawable/chat_img"
             android:title="Чат" />
         <item
             android:id="@+id/menu_ranking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:icon="@drawable/leaderboard_img"
             android:title="Рейтинг" />
         <item
             android:id="@+id/menu_instagram"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:icon="@drawable/inst_logo"
             android:title="Instagram" />
         <item
             android:id="@+id/menu_discord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:icon="@drawable/discord_logo"
             android:title="Discord" />
         <item
             android:id="@+id/menu_telegram"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:icon="@drawable/telegram_logo"
             android:title="Telegram" />
         <item
             android:id="@+id/menu_faq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:icon="@drawable/question_img"
             android:title="FAQ" />
         <item
             android:id="@+id/menu_exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:title="Выйти с аккаунта"
-            />
+            android:icon="@drawable/exit_img"
+            android:title="Выйти с аккаунта" />
     </group>
 </menu>

@@ -68,7 +68,7 @@
                         android:layout_weight="1"
                         android:text="@string/course_button_name"
                         android:textColor="@color/white"
-                        android:textSize="35sp"
+                        android:textSize="30sp"
 
                         >
 
@@ -108,7 +108,7 @@
                         android:layout_weight="1"
                         android:text="@string/mark_button_text"
                         android:textColor="@color/white"
-                        android:textSize="35sp"
+                        android:textSize="30sp"
 
                         >
 
@@ -148,7 +148,7 @@
                         android:layout_weight="1"
                         android:text="@string/record_button_text"
                         android:textColor="@color/white"
-                        android:textSize="35sp"
+                        android:textSize="30sp"
 
                         >
 

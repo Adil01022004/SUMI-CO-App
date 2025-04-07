@@ -47,7 +47,8 @@ dependencies {
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
     kapt("androidx.room:room-compiler:2.6.1")
-
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.9")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.9")
 
     implementation ("com.squareup.picasso:picasso:2.8")
     implementation ("com.google.firebase:firebase-analytics")
