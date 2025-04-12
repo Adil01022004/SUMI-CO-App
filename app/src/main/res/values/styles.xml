@@ -4,4 +4,10 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">60dp</item>
     </style>
+
+    <style name="LogoCornerImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">60dp</item>
+        <item name="backgroundColor">@color/white</item>
+    </style>
 </resources>
