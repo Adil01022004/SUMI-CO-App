@@ -50,6 +50,8 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.9")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.9")
 
+    implementation("com.google.android.material:material:1.11.0")
+
     implementation ("com.squareup.picasso:picasso:2.8")
     implementation ("com.google.firebase:firebase-analytics")
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))

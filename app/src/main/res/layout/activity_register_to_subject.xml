@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GradeActivity"
+    tools:context=".RegisterToSubjectActivity"
     android:gravity="center_horizontal"
     android:fitsSystemWindows="true"
     android:id="@+id/drawer_layout"
-    >
+   >
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
@@ -34,7 +34,7 @@
 
 
         <TableLayout
-            android:id="@+id/user_grades_table"
+            android:id="@+id/teachersAndCoursesTable"
             android:layout_below="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,10 +60,20 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Оценка"
+                    android:text="Преподаватель"
+                    android:textStyle="bold"
+                    android:layout_weight="3"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
                     android:textStyle="bold"
                     android:layout_weight="1"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center">
+
+                </TextView>
 
 
             </TableRow>

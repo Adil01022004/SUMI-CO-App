@@ -11,17 +11,51 @@ class UserInfo(
     val userEmail: String,
     val userPassword: String? = null,
     val userFullName: String? = null,
-    val userPoints: Int? = 0
+    val userPoints: Int? = 0,
+    val commandID: String? = null
 ) {
     private val firebaseDb = Firebase.database
+
+    // Получить userFullName по userId (usr_...)
+    fun getUserFullNameById(userId: String, callback: (String?) -> Unit) {
+        val myRef = firebaseDb.getReference("userInfo")
+
+        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (child in snapshot.children) {
+                    val idValue = child.child("id").getValue(String::class.java)
+                    if (idValue == userId) {
+                        val name = child.child("userFullName").getValue(String::class.java)
+                        callback(name)
+                        return
+                    }
+                }
+                callback(null) // Не найден
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("FirebaseData", "Ошибка поиска userFullName по ID", error.toException())
+                callback(null)
+            }
+        })
+    }
+
+
 
 
 
     fun setUserInfo(userEmail: String, userPassword: String){
         val safeUserEmail = userEmail.substringBefore("@")
         val myRef = firebaseDb.getReference("userInfo")
-        myRef.child(safeUserEmail).setValue(UserInfo(userEmail, userPassword))
+
+        val updates = mapOf(
+            "userEmail" to userEmail,
+            "userPassword" to userPassword
+        )
+
+        myRef.child(safeUserEmail).updateChildren(updates)
     }
+
 
     // Получение имени пользователя с Firebase (через callback)
     fun getUserFullName(callback: (String?) -> Unit) {

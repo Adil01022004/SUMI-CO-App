@@ -8,5 +8,9 @@
         <item name="windowActionBar">false</item>
     </style>
 
-    <style name="Theme.Sumico" parent="Base.Theme.Sumico" />
+    <style name="Theme.Sumico" parent="Base.Theme.Sumico" >
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    </style>
+
+
 </resources>

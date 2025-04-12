@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.MediaController
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -34,22 +35,27 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var conf: AppBarConfiguration
     private lateinit var navController: NavController
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContentView(binding.root)
 
         setupUI()
-        navController = findNavController(R.id.fragmentContainerView)
-        conf = AppBarConfiguration(
-            setOf(
-                R.id.menu_main,
-                R.id.menu_achi
-            ), binding.drawerLayout
-
-
-        )
-        setupActionBarWithNavController(navController, conf)
+//        navController = findNavController(R.id.fragmentContainerView)
+//        conf = AppBarConfiguration(
+//            setOf(
+//                R.id.menu_main,
+//                R.id.menu_achi
+//            ), binding.drawerLayout
+//
+//
+//        )
+//        setupActionBarWithNavController(navController, conf)
 
         val firebaseDb = Firebase.database
         val myRef = firebaseDb.getReference("userInfo")
@@ -61,7 +67,6 @@ class MainActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         val userInfo = UserInfo(userEmail, userPassword)
         userInfo.setUserInfo(userEmail, userPassword)
-
 
 
     }
@@ -99,7 +104,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         recordButton.setOnClickListener {
-            val intent = Intent(this, EmptyContentActivity::class.java)
+            val intent = Intent(this, RegisterToSubjectActivity
+            ::class.java)
             startActivity(intent)
         }
 
@@ -109,7 +115,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         competitionsButton.setOnClickListener {
-            val intent = Intent(this, EmptyContentActivity::class.java)
+            val intent = Intent(this, CommandToCompetitionActivity::class.java)
             startActivity(intent)
         }
 

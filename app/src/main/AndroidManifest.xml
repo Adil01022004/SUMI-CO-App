@@ -15,10 +15,20 @@
         android:theme="@style/Theme.Sumico"
         tools:targetApi="31">
         <activity
+            android:name=".CommandToSubjectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CommandToCompetitionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterToSubjectActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
