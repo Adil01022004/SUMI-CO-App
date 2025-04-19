@@ -42,6 +42,13 @@ android {
 }
 
 dependencies {
+
+    implementation ("com.google.firebase:firebase-auth:21.0.3")
+    implementation ("com.google.firebase:firebase-database:20.0.5")
+    implementation ("com.google.crypto.tink:tink-android:1.6.1")
+
+
+
     implementation("androidx.room:room-ktx:2.6.1")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))

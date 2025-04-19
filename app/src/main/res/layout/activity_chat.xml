@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ChatActivity">
+
+    <!-- Основной контейнер -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Верхний хедер -->
+        <include
+            android:id="@+id/header"
+            layout="@layout/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Контейнер сообщений -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:clipToPadding="false"
+            android:scrollbars="vertical" />
+
+        <!-- Поле ввода + кнопка -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="20dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/userWriteMessage"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="5"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                android:hint="Сообщение"
+
+                android:inputType="textMultiLine"
+                android:maxLines="4" />
+
+            <RelativeLayout
+                android:id="@+id/sendMessage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/circle_blue"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/chat_send_button" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Боковое меню -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        app:menu="@menu/main_drawer_layout"
+        android:fitsSystemWindows="true"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/menu_header"/>
+</androidx.drawerlayout.widget.DrawerLayout>

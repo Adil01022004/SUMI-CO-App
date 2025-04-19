@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="start"
+    android:padding="10dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/message_item_background"
+    android:maxWidth="200dp">
+
+    <TextView
+        android:id="@+id/sender_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/green"
+        android:textStyle="bold"
+        android:text="Имя пользователя" />
+
+    <TextView
+        android:id="@+id/message_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:textColor="@color/white_grey"
+        android:text="Сообщение" />
+</LinearLayout>

@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var scheduleButton: LinearLayout
     private lateinit var competitionsButton:LinearLayout
     private lateinit var commandToSubjectButton: LinearLayout
+    private lateinit var chatButton: ImageView
     private lateinit var binding: ActivityMainBinding
     private lateinit var conf: AppBarConfiguration
     private lateinit var navController: NavController
@@ -83,6 +85,7 @@ class MainActivity : AppCompatActivity() {
         scheduleButton = findViewById(R.id.schedule_button)
         competitionsButton = findViewById(R.id.competitions_button)
         commandToSubjectButton = findViewById(R.id.command_to_subject_button)
+        chatButton = findViewById(R.id.chatButton)
 
         menuButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
@@ -124,7 +127,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        chatButton.setOnClickListener {
+            val intent = Intent(this, ChatActivity::class.java)
+            intent.putExtra("userAccessEmail",userEmail )
+            startActivity(intent)
+        }
 
 
     }
